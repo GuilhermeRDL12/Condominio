@@ -1,0 +1,15 @@
+﻿@model  Condominio
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar</h1>
+
+<mensagem texto="@TempData["mensagem"]"></mensagem>
+
+<form asp-action="cadastrar" asp-controller="condominio">
+    <partial name="_formulario" />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+</form>
+

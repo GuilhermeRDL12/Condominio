@@ -1,0 +1,75 @@
+﻿@model List<Condominio>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+<h1>Listar</h1>
+
+<mensagem texto="@TempData["mensagem"]"></mensagem>
+
+<form asp-action="pesquisar" method="get" class="form-inline">
+    <input placeholder="Digite o nome" type="text" name="termoPesquisa" class="form-control" />
+    <input type="submit" value="Buscar" class="ml-2 btn btn-success" />
+</form>
+<br />
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Blocos</th>
+        <th>Ativo</th>
+        <th>Tipo</th>
+        <th>Sindico</th>
+        <th>E-mail do Sindico</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Blocos</td>
+            <td>@(item.Ativo ? "Sim" : "Não")</td>
+            <td>@item.Tipo</td>
+            <td>@item.Sindico.Nome</td>
+            <td>@item.Sindico.Email</td>
+            <td>
+                <a class="btn btn-outline-dark btn-sm" asp-action="Editar" asp-route-id="@item.CondominioId">Editar</a>
+                <!-- Button trigger modal -->
+                <button onclick="codigo.value = @item.CondominioId" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    Excluir
+                </button>
+                <a class="btn btn-outline-primary btn-sm"
+                   asp-action="listar" asp-controller="imovel"
+                   asp-route-idBusca="@item.CondominioId">
+                    Imóveis
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Deseja realmente excluir?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Excluir">
+                    <input name="id" type="hidden" id="codigo"/> 
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

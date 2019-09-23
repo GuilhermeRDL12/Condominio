@@ -1,0 +1,29 @@
+﻿
+@model IList<Imovel>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h1>Imóveis</h1>
+<form asp-action="listar" method="get" class="form-inline">
+    <select asp-items="@ViewBag.condominios" class="form-control" name="IdBusca">
+        <option value="0">Selecione</option>
+    </select>
+    <input type="submit" value="Buscar" class="btn btn-primary"/>
+</form>
+<br />
+<table class="table">
+    <tr>
+        <th>Números</th>
+        <th>Área</th>
+        <th>Condominio</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Numero</td>
+            <td>@item.AreaUtil</td>
+            <td>@item.Condominio.Nome</td>
+        </tr>
+    }
+</table>

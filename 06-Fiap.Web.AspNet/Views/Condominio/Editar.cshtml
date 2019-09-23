@@ -1,0 +1,14 @@
+﻿@model  Condominio
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+
+<form asp-action="Editar" asp-controller="Condominio">
+    <input asp-for="CondominioId" />
+    <partial name="_formulario"/>
+    <input type="submit" value="Editar" class="btn btn-success" />
+</form>
+

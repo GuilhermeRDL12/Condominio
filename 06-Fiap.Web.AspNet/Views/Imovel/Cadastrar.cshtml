@@ -1,0 +1,21 @@
+﻿
+@model Imovel
+
+<form asp-action="cadastrar" asp-controller="imovel">
+<div class="form-group">
+    <label asp-for="Numero"></label>
+    <input asp-for="Numero" class="form-control"/>
+</div>
+<div class="form-group">
+    <label asp-for="AreaUtil"></label>
+    <input asp-for="AreaUtil" class="form-control"/>
+</div>
+<div class="form-group">
+    <label asp-for="Condominio"></label>
+    <select asp-for="CondominioId" class="form-control"
+            asp-items="@ViewBag.condominios">
+        <option>Selecione</option>
+    </select>
+</div>
+    <input type="submit" value="Cadastrar" class="btn btn-primary"/>
+</form>
